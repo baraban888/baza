@@ -2,16 +2,16 @@ import sqlite3
 from sqlite3 import Error
 
 def create_connection(db_file):
-   """ create a database connection to a SQLite database """
-   conn = None
-   try:
-       conn = sqlite3.connect(db_file)
-       print(f"Connected to {db_file}, sqlite version: {sqlite3.version}")
-   except Error as e:
-       print(e)
-   finally:
-       if conn:
-           conn.close()
+    """Создает подключение к SQLite базе данных"""
+    conn = None
+    try:
+        conn = sqlite3.connect(db_file)
+        print(f"Połączono z bazą: {db_file}, SQLite version: {sqlite3.version}")
+        return conn   # <-- вот это главное изменение!
+    except Error as e:
+        print(e)
+        return None
+
 
 def create_connection_in_memory():
    """ create a database connection to a SQLite database """
