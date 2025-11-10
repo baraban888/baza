@@ -1,0 +1,16 @@
+{
+    "sqltools.connections": [
+        {
+            "previewLimit": 50,
+            "driver": "SQLite",
+            "name": "baza_sqlite",
+            "database": "${workspaceFolder:baza}/database.db"
+        },
+        {
+            "previewLimit": 50,
+            "driver": "SQLite",
+            "name": "baza_sqlite69",
+            "database": "${workspaceFolder:baza}/database.db"
+        }
+    ]
+}

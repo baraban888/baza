@@ -26,6 +26,26 @@ def create_connection_in_memory():
            conn.close()
 import sqlite3
 from sqlite3 import Error
+import sqlite3
+
+import sqlite3
+
+def add_task(conn, task):
+    """
+    Добавляет новую задачу в таблицу zadanie.
+    :param conn: объект соединения с базой данных
+    :param task: кортеж (project_id, nazwa, opis, status, start_date, end_date)
+    """
+    sql = '''INSERT INTO zadanie(project_id, nazwa, opis, status, start_date, end_date)
+             VALUES(?, ?, ?, ?, ?, ?)'''
+    try:
+        cursor = conn.cursor()
+        cursor.execute(sql, task)
+        conn.commit()
+        print(f"✅ Zadanie '{task[1]}' dodane pomyślnie (ID: {cursor.lastrowid})")
+    except sqlite3.Error as e:
+        print(f"❌ Błąd podczas dodawania zadania: {e}")
+
 
 def create_connection(db_file):
     """ create a database connection to SQLite """
@@ -46,6 +66,14 @@ def execute_sql(conn, sql):
         conn.commit()
     except Error as e:
         print(e)
+        
+def execute_query(sql):
+    """Execute SQL query using context manager"""
+    import sqlite3
+    with sqlite3.connect("database.db") as conn:
+        cursor = conn.cursor()
+        cursor.execute(sql)
+        conn.commit()
 
 def main():
     database = "database.db"
