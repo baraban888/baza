@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<body>
+  <h1>Loans</h1>
+
+  <a href="{{ url_for('main.add_loan') }}">Add loan</a>
+  <br><br>
+
+  <table border="1" cellpadding="5">
+    <tr>
+      <th>ID</th>
+      <th>Book</th>
+      <th>Borrower</th>
+      <th>Borrowed at</th>
+      <th>Due at</th>
+      <th>Returned at</th>
+      <th>Status</th>
+    </tr>
+
+    {% for loan in loans %}
+    <tr>
+      <td>{{ loan.id }}</td>
+      <td>{{ loan.book.title }}</td>
+      <td>{{ loan.borrower }}</td>
+      <td>{{ loan.borrowed_at.strftime('%Y-%m-%d') if loan.borrowed_at }}</td>
+      <td>{{ loan.due_at.strftime('%Y-%m-%d') if loan.due_at }}</td>
+      <td>{{ loan.returned_at.strftime('%Y-%m-%d') if loan.returned_at }}</td>
+      <td>{{ "active" if loan.is_active else "returned" }}</td>
+    </tr>
+    {% endfor %}
+  </table>
+
+  <br>
+  <a href="{{ url_for('main.list_books') }}">Back to books</a>
+</body>
+</html>

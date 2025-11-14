@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<body>
+  <h1>Authors</h1>
+
+  <a href="{{ url_for('main.add_author') }}">Add author</a>
+  <br><br>
+
+  <table border="1" cellpadding="5">
+    <tr>
+      <th>ID</th>
+      <th>Name</th>
+      <th>Books count</th>
+    </tr>
+
+    {% for author in authors %}
+    <tr>
+      <td>{{ author.id }}</td>
+      <td>{{ author.name }}</td>
+      <td>{{ author.books|length }}</td>
+    </tr>
+    {% endfor %}
+  </table>
+
+  <br>
+  <a href="{{ url_for('main.list_books') }}">Back to books</a>
+</body>
+</html>

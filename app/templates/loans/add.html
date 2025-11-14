@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<body>
+  <h1>Add loan</h1>
+
+  {% if error %}
+    <p style="color: red">{{ error }}</p>
+  {% endif %}
+
+  <form method="post">
+    <label>Book:
+      <select name="book_id" required>
+        <option value="">-- choose book --</option>
+        {% for book in books %}
+          <option value="{{ book.id }}">
+            {{ book.title }} (ISBN: {{ book.isbn }})
+          </option>
+        {% endfor %}
+      </select>
+    </label><br>
+
+    <label>Borrower:
+      <input type="text" name="borrower" required>
+    </label><br>
+
+    <label>Due date:
+      <input type="date" name="due_at" required>
+    </label><br>
+
+    <button type="submit">Save</button>
+  </form>
+
+  <a href="{{ url_for('main.list_loans') }}">Back</a>
+</body>
+</html>

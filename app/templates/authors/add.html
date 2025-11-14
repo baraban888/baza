@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html lang="en">
+<body>
+  <h1>Add author</h1>
+
+  {% if error %}
+    <p style="color: red">{{ error }}</p>
+  {% endif %}
+
+  <form method="post">
+    <label>Name:
+      <input type="text" name="name" required>
+    </label><br>
+
+    <button type="submit">Save</button>
+  </form>
+
+  <a href="{{ url_for('main.list_authors') }}">Back</a>
+</body>
+</html>

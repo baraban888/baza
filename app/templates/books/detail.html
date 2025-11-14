@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<body>
+
+<h1>Book: {{ book.title }}</h1>
+
+<p><b>ISBN:</b> {{ book.isbn }}</p>
+<p><b>On shelf:</b> {{ "Yes" if book.on_shelf else "No" }}</p>
+
+<h3>Authors</h3>
+<ul>
+    {% for author in book.authors %}
+        <li>{{ author.name }}</li>
+    {% else %}
+        <li>No authors</li>
+    {% endfor %}
+</ul>
+
+<h3>Loans</h3>
+<ul>
+    {% for loan in book.loans %}
+        <li>
+            Borrower: <b>{{ loan.borrower }}</b>,
+            Taken: {{ loan.borrowed_at }},
+            Due: {{ loan.due_at }},
+            Returned: {{ loan.returned_at or "Not returned" }}
+        </li>
+    {% else %}
+        <li>No loans</li>
+    {% endfor %}
+</ul>
+
+<br>
+<a href="{{ url_for('main.list_books') }}">Back</a>
+
+</body>
+</html>

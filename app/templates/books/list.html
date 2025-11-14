@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<body>
+<h1>Books</h1>
+
+<a href="{{ url_for('main.add_book') }}">Add book</a>
+<br><br>
+
+<table border="1" cellpadding="5">
+    <tr>
+        <th>ID</th>
+        <th>Title</th>
+        <th>ISBN</th>
+        <th>On shelf</th>
+        <th>Actions</th>
+    </tr>
+
+    {% for book in books %}
+    <tr>
+        <td>{{ book.id }}</td>
+        <td>{{ book.title }}</td>
+        <td>{{ book.isbn }}</td>
+        <td>{{ "Yes" if book.on_shelf else "No" }}</td>
+        <td>
+            (actions later)
+        </td>
+    </tr>
+    {% endfor %}
+</table>
+
+</body>
+</html>
